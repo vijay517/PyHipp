@@ -50,15 +50,15 @@ with lock:
         # load hickle file
         clist = hickle.load(file_path)
 
-    if pmode == WRITE_MODE:
-        # append env to the clist
-        clist.append(env)
+        if pmode == WRITE_MODE:
+            # append env to the clist
+            clist.append(env)
     
-    else:
-        # get and remove env from clist
-        # return env name
-        env = clist.pop(0)
-        print(env)
+        else:
+            # get and remove env from clist
+            # return env name
+            env = clist.pop(0)
+            print(env)
 
-# save hickle file
-hickle.dump(clist, file_path, mode="w")
+    # save hickle file
+    hickle.dump(clist, file_path, mode="w")
