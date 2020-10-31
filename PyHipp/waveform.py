@@ -69,6 +69,17 @@ class Waveform(DPT.DPObject):
         # ..................code...................
         # .........................................
         self.data = self.data + wf.data
+        aname = DPT.levels.normpath(os.path.dirname(pwd))
+        self.array_dict = dict()
+        self.array_dict[aname] = 0
+        
+        for ar in wf.array_dict:
+            self.array_dict[ar] = self.numSets
+        
+        self.numSets += 1
+        self.current_plot_type = None
+
+
         
     def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
              getPlotOpts = False, overlay = False, **kwargs):
