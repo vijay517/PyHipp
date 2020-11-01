@@ -114,6 +114,9 @@ class Waveform(DPT.DPObject):
             # .........................................
             # ..................code...................
             # .........................................
+            if plot_type == 'Channel':
+                return self.numSets, i
+            
             
             return  # please return two items here: <total-number-of-items-to-plot>, <current-item-index-to-plot>
                 
@@ -131,7 +134,9 @@ class Waveform(DPT.DPObject):
             # .........................................
             # ..................code...................
             # .........................................
-            pass  # you may delete this line
+            y = self.data[i]
+            x = np.arange(y.shape[0])
+            ax.plot(x, y)
     
         ########labels###############
         if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
@@ -139,15 +144,20 @@ class Waveform(DPT.DPObject):
             # .........................................
             # ..................codes..................
             # .........................................
-            pass  # you may delete this line
+            ax.set_title(self.dirs[i])
             
         if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
             # set the xlabel and ylabel
             # .........................................
             # ..................code...................
             # .........................................
-            pass  # you may delete this line
-            
+            ax.set_xlabel('Time (sample unit)')
+            ax.set_ylabel('Voltage (uV)')
+        
+        if plotOpts['TicksOff']:
+            ax.set_xticklabels([])
+            ax.set_yticklabels([])
+
         return ax
     
     
