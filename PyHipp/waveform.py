@@ -116,9 +116,6 @@ class Waveform(DPT.DPObject):
             # .........................................
             if plot_type == 'Channel':
                 return self.numSets, i
-            
-            
-            return  # please return two items here: <total-number-of-items-to-plot>, <current-item-index-to-plot>
                 
         if ax is None:
             ax = plt.gca()
@@ -139,24 +136,24 @@ class Waveform(DPT.DPObject):
             ax.plot(x, y)
     
         ########labels###############
-        if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
-            # set the title in this format: channelxxx, fill with zeros if the channel number is not three-digit
-            # .........................................
-            # ..................codes..................
-            # .........................................
-            ax.set_title(self.dirs[i])
+            if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
+                # set the title in this format: channelxxx, fill with zeros if the channel number is not three-digit
+                # .........................................
+                # ..................codes..................
+                # .........................................
+                ax.set_title(self.dirs[i])
             
-        if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
-            # set the xlabel and ylabel
-            # .........................................
-            # ..................code...................
-            # .........................................
-            ax.set_xlabel('Time (sample unit)')
-            ax.set_ylabel('Voltage (uV)')
+            if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
+                # set the xlabel and ylabel
+                # .........................................
+                # ..................code...................
+                # .........................................
+                ax.set_xlabel('Time (sample unit)')
+                ax.set_ylabel('Voltage (uV)')
         
-        if plotOpts['TicksOff']:
-            ax.set_xticklabels([])
-            ax.set_yticklabels([])
+            if plotOpts['TicksOff']:
+                ax.set_xticklabels([])
+                ax.set_yticklabels([])
 
         return ax
     
